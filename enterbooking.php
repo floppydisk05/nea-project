@@ -13,18 +13,18 @@
             <label for="title"><b>Title:</b></label><br>
             <input type="text" id="title" name="title"><br>
             <label for="room"><b>Room:</b></label><br>
-            <select id="room">
+            <select name="room">
                 <option disabled selected value> -- select an option -- </option>
-                <option value="meetingroom">Meeting Room</option>
-                <option value="trainingroom">Training Room</option>
-                <option value="office1">Office 1</option>
-                <option value="hall">Hall</option>
-                <option value="kitchen">Kitchen</option>
+                <option value="1">Meeting Room</option>
+                <option value="2">Training Room</option>
+                <option value="3">Office 1</option>
+                <option value="4">Hall</option>
+                <option value="5">Kitchen</option>
             </select><br>
-            <label for="startdt"><b>Start:</b></label><br>
-            <input type="datetime-local" id="startdt" name="startdt"><br>
-            <label for="enddt"><b>Start:</b></label><br>
-            <input type="datetime-local" id="enddt" name="enddt"><br>
+            <label for="start_dt"><b>Start:</b></label><br>
+            <input type="datetime-local" id="start_dt" name="start_dt"><br>
+            <label for="end_dt"><b>Start:</b></label><br>
+            <input type="datetime-local" id="end_dt" name="end_dt"><br>
             <label for="notes"><b>Notes:</b></label><br>
             <textarea id="notes" name="notes"></textarea><br>
             <input type="submit" value="Save">
