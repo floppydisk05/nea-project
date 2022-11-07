@@ -1,5 +1,4 @@
 <?php
-require('config.inc.php');
 /*
 - get_user
 - get_room

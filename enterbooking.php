@@ -7,6 +7,7 @@
     <title>Enter Booking</title>
 </head>
 <body>
+    <a href="/">Back</a>
     <form action="processbooking.php" method="post" style="border: 2px; width: 400px">
         <fieldset>
             <legend>Enter booking</legend>

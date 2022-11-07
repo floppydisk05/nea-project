@@ -40,7 +40,8 @@ function display_booking(array $BOOKING) {
     echo '<b>Start:</b> ' . format_date($BOOKING['start_dt']).'<br>';
     echo '<b>End:</b> ' . format_date($BOOKING['end_dt']).'<br>';
     $duration = $BOOKING['end_dt'] - $BOOKING['start_dt'];
-    echo '<b>Duration:</b> ' . format_time($duration);
+    echo '<b>Duration:</b> ' . format_time($duration).'<br>';
+    echo '<b>Notes:</b> ' . $BOOKING['notes'];
 }
 
 // Put booking info into an array to make it easier to understand
