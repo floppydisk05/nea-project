@@ -7,7 +7,7 @@
     <title>Enter Booking</title>
 </head>
 <body>
-    <form action="processbooking.php" method="post" style="border: 2px">
+    <form action="processbooking.php" method="post" style="border: 2px; width: 400px">
         <fieldset>
             <legend>Enter booking</legend>
             <label for="title"><b>Title:</b></label><br>
