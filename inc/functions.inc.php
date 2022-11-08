@@ -54,9 +54,12 @@ function format_date($timestamp) {
 }
 
 function format_time($seconds) {
+    $days = intval(gmdate('d', $seconds));
     $hours = intval(gmdate('H', $seconds));
     $minutes = intval(gmdate('i', $seconds));
-    if ($hours === 0) return $minutes.'m';
-    elseif ($minutes === 0) return $hours.'h';
-    else return $hours.'h '.$minutes.'m';
+    $date = '';
+    if ($days > 0) $date .= $days.'d ';
+    if ($hours > 0) $date .= $hours.'h ';
+    if ($minutes > 0) $date .= $minutes.'m';
+    return $date;
 }
