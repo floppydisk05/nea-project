@@ -19,8 +19,7 @@
                 <option value="1">Meeting Room</option>
                 <option value="2">Training Room</option>
                 <option value="3">Office 1</option>
-                <option value="4">Hall</option>
-                <option value="5">Kitchen</option>
+                <option value="4">Hall &amp; Kitchen</option>
             </select><br>
             <label for="start_dt"><b>Start:</b></label><br>
             <input type="datetime-local" id="start_dt" name="start_dt"><br>
