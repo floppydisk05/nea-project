@@ -21,7 +21,11 @@ function validate_booking(array $BOOKING) {
 
     // Check if start is after end or if either isn't provided
     if (!$_POST['start_dt'] || !$_POST['end_dt']) $errs .= '<li>Both start and end must be provided!</li>';
-    elseif ($BOOKING['start_dt'] >= $BOOKING['end_dt']) $errs .= '<li>End date cannot be before or equal to start date</li>';
+    else {
+        if ($BOOKING['start_dt'] >= $BOOKING['end_dt']) $errs .= '<li>End date cannot be before or equal to start date</li>';
+        $currentTime = time();
+        if ($BOOKING['start_dt'] <= $currentTime || $BOOKING['end_dt'] <= $currentTime) $errs .= '<li>Both start and end date must not be in the past</li>';
+    }
 
     // Check if room or booking title are provided
     if ($BOOKING['room_id'] === 0) $errs .= '<li>Room not provided!</li>';
