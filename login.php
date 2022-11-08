@@ -12,9 +12,9 @@
     <form action="loginprocess.php" method="post" style="border: 2px; width: 400px">
         <fieldset>
             <legend>Login</legend>
-            <label for="uname"><b>Username:</b></label><br>
+            <label for="uname"><strong>Username:</strong></label><br>
             <input type="text" id="uname" name="uname"><br>
-            <label for="pword"><b>Password:</b></label><br>
+            <label for="pword"><strong>Password:</strong></label><br>
             <input type="password" id="pword" name="pword"><br><br>
             <input type="submit" value="Log in">
         </fieldset>

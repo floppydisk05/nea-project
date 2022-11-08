@@ -5,4 +5,3 @@ const CONF = array(
     "username" => "uname",
     "password" => "pword"
 );
-?>

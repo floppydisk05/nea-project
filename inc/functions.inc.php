@@ -5,10 +5,9 @@
 - get_booking
 -
 */
+require_once('exceptions.inc.php');
 
 function get_user($userID) {
-    if (!isset($userID)) return;
-
     // Create connection
     $conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
     // Check connection
@@ -20,7 +19,7 @@ function get_user($userID) {
     $stmt->bind_param('s', $userID);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows < 1) return;
+    if ($result->num_rows < 1) { throw new NoResultsException('No results for user id '.$userID.'!'); }
     $user = $result->fetch_all(MYSQLI_ASSOC)[0];
     return array (
         "first_name" => $user['first_name'],
@@ -29,8 +28,6 @@ function get_user($userID) {
 }
 
 function get_room($roomID) {
-    if (!isset($roomID)) return;
-
     // Create connection
     $conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
     // Check connection
@@ -42,7 +39,7 @@ function get_room($roomID) {
     $stmt->bind_param('s', $roomID);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows < 1) return;
+    if ($result->num_rows < 1) { throw new NoResultsException('No results for room id '.$roomID.'!'); }
     $user = $result->fetch_all(MYSQLI_ASSOC)[0];
     return array (
         "alias" => $user['alias']
@@ -58,8 +55,8 @@ function format_time($seconds) {
     $hours = intval(gmdate('H', $seconds));
     $minutes = intval(gmdate('i', $seconds));
     $date = '';
-    if ($days > 0) $date .= $days.'d ';
-    if ($hours > 0) $date .= $hours.'h ';
-    if ($minutes > 0) $date .= $minutes.'m';
+    if ($days > 0) { $date .= $days.'d '; }
+    if ($hours > 0) { $date .= $hours.'h '; }
+    if ($minutes > 0) { $date .= $minutes.'m'; }
     return $date;
 }
