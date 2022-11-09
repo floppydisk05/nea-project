@@ -60,3 +60,8 @@ function format_time($seconds) {
     if ($minutes > 0) { $date .= $minutes.'m'; }
     return $date;
 }
+
+function sqldate($epoch) {
+    $date = new DateTime("@$epoch");
+    return $date->format('Y-m-d H:i:s');
+}
