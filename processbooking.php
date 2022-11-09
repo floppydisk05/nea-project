@@ -49,11 +49,19 @@ function display_booking(array $booking) {
     echo '<strong>Notes:</strong> ' . $booking['notes'];
 }
 
+function enter_booking(array $booking, $conn) {
+    $stmt = $conn->prepare('INSERT INTO bookings (title, room_id, client_id, created_by, start, end) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('siiiss', $booking['title'], $booking['room_id'], $booking['client_id'], $booking['created_by'], sqldate($booking['start_dt']), sqldate($booking['end_dt']));
+    if ($stmt->execute()) { echo 'Successfully added booking!'; }
+    else { echo $conn->error; }
+}
+
 // Put booking info into an array to make it easier to understand
 $booking = array(
-    "created_by" => 1,
     "title" => $_POST['title'],
+    "created_by" => 1,
     "room_id" => intval($_POST['room']),
+    "client_id" => 1,
     "start_dt" => strtotime($_POST['start_dt']),
     "end_dt" => strtotime($_POST['end_dt']),
     "notes" => $_POST['notes']
@@ -61,3 +69,4 @@ $booking = array(
 
 validate_booking($booking);
 display_booking($booking);
+enter_booking($booking, $conn);
