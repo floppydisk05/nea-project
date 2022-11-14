@@ -65,3 +65,11 @@ function sqldate($epoch) {
     $date = new DateTime("@$epoch");
     return $date->format('Y-m-d H:i:s');
 }
+
+function list_bookings($bookings) {
+    while ($booking = $bookings->fetch_assoc()) {
+        echo '<strong>'.$booking['client_fname'].' '.$booking['client_lname'].'</strong><br>';
+        echo '<small>'.$booking['title'].'</small>';
+        echo '<hr>';
+    }
+}
