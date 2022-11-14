@@ -12,11 +12,17 @@
     <form action="loginprocess.php" method="post" style="border: 2px; width: 400px">
         <fieldset>
             <legend>Login</legend>
-            <label for="uname"><strong>Username:</strong></label><br>
-            <input type="text" id="uname" name="uname"><br>
-            <label for="pword"><strong>Password:</strong></label><br>
-            <input type="password" id="pword" name="pword"><br><br>
-            <input type="submit" value="Log in">
+            <table>
+                <tr>
+                    <td><label for="uname"><strong>Username:</strong></label></td>
+                    <td><input type="text" id="uname" name="uname"></td>
+                </tr>
+                <tr>
+                    <td><label for="pword"><strong>Password:</strong></label></td>
+                    <td><input type="password" id="pword" name="pword"></td>
+                </tr>
+                <tr><td colspan="2"><input type="submit" value="Log in"></td></tr>
+            </table>
         </fieldset>
     </form>
 </body>
