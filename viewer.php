@@ -44,8 +44,6 @@ if (!isset($_POST['date']) && !isset($_POST['title'])) {
             echo $bookings->num_rows.' results for "'.$_POST['title'].'"<br>';
         }
     } elseif ($_POST['title'] === '') {
-        $bookings = $conn->query($initial_query);
-        echo '<h2>TBD</h2>';
         $date = strtotime($_POST['date']);
         $date_year = intval(date('Y', $date));
         $date_month = intval(date('m', $date));
@@ -57,6 +55,17 @@ if (!isset($_POST['date']) && !isset($_POST['title'])) {
         $bookings = $stmt->get_result();
         if (!$bookings) { echo $conn->error; }
         echo $bookings->num_rows.' bookings on '.$date_day.'/'.$date_month.'/'.$date_year.'<br>';
+    } else {
+        $title = '%'.$_POST['title'].'%';
+        $date = strtotime($_POST['date']);
+        $date_year = intval(date('Y', $date));
+        $date_month = intval(date('m', $date));
+        $date_day = intval(date('d', $date));
+        $initial_query .= ' WHERE year(bookings.start) = ?  AND month(bookings.start) = ? AND day(bookings.start) = ? AND bookings.title LIKE ?';
+        $stmt = $conn->prepare($initial_query);
+        $stmt->bind_param('iiis', $date_year, $date_month, $date_day, $title);
+        $stmt->execute();
+        $bookings = $stmt->get_result();
     }
 }
 echo '<hr>';
