@@ -1,10 +1,4 @@
 <?php
-/*
-- get_user
-- get_room
-- get_booking
--
-*/
 require_once('exceptions.inc.php');
 
 function get_user($userID) {
