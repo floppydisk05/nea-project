@@ -73,3 +73,20 @@ function list_bookings($bookings) {
         echo '<hr>';
     }
 }
+
+function validate_login($username, $password) {
+    // Create connection
+    $conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
+    // Check connection
+    if ($conn->connect_error) {
+       die('Connection failed: ' . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare('SELECT username, password FROM users WHERE username = ?');
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $users = $stmt->get_result();
+    $user = $users->fetch_assoc();
+
+    return password_verify($password, $user['password']);
+}
