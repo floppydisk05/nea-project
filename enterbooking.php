@@ -1,3 +1,20 @@
+<?php
+// Enable error reporting
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+require_once('inc/functions.inc.php');
+
+// Create and check connection
+require_once('./inc/config.inc.php');
+$conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
+if ($conn->connect_error) {
+   $diemsg = '<pre><i>Unable to connect to DB!</i></pre>';
+   die($diemsg);
+}
+$clients = $conn->query('SELECT id, first_name, last_name FROM clients');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +38,15 @@
                 <option value="2">Training Room</option>
                 <option value="3">Office 1</option>
                 <option value="4">Hall &amp; Kitchen</option>
+            </select><br>
+            <label for="client"><strong>Client:</strong></label><br>
+            <select name="client">
+                <option disabled selected value> -- select an option -- </option>
+<?php
+while ($client = $clients->fetch_assoc()) {
+    echo '                <option value="'.$client['id'].'">'.$client['first_name'].' '.$client['last_name'].'</option>'.PHP_EOL;
+}
+?>
             </select><br>
             <label for="start_dt"><strong>Start:</strong></label><br>
             <input type="datetime-local" id="start_dt" name="start_dt"><br>
