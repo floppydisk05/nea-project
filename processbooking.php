@@ -50,8 +50,8 @@ function display_booking(array $booking) {
 }
 
 function enter_booking(array $booking, $conn) {
-    $stmt = $conn->prepare('INSERT INTO bookings (title, room_id, client_id, created_by, start, end) VALUES (?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('siiiss', $booking['title'], $booking['room_id'], $booking['client_id'], $booking['created_by'], sqldate($booking['start_dt']), sqldate($booking['end_dt']));
+    $stmt = $conn->prepare('INSERT INTO bookings (title, room_id, client_id, created_by, start, end, notes) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('siiisss', $booking['title'], $booking['room_id'], $booking['client_id'], $booking['created_by'], sqldate($booking['start_dt']), sqldate($booking['end_dt']), $booking['notes']);
     if ($stmt->execute()) { echo 'Successfully added booking!'; }
     else { echo $conn->error; }
 }

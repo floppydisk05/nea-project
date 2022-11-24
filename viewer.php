@@ -26,7 +26,7 @@ if ($conn->connect_error) {
    die($diemsg);
 }
 
-$initial_query = 'SELECT bookings.ref, bookings.title, bookings.`start`, bookings.`end`, rooms.alias, clients.first_name AS client_fname, clients.last_name AS client_lname, users.first_name AS user_fname, users.last_name AS user_lname FROM bookings INNER JOIN rooms ON bookings.room_id = rooms.id INNER JOIN users ON bookings.created_by = users.id INNER JOIN clients ON bookings.client_id = clients.id';
+$initial_query = 'SELECT bookings.ref, bookings.title, bookings.`start`, bookings.`end`, bookings.notes, rooms.alias, clients.first_name AS client_fname, clients.last_name AS client_lname, users.first_name AS user_fname, users.last_name AS user_lname FROM bookings INNER JOIN rooms ON bookings.room_id = rooms.id INNER JOIN users ON bookings.created_by = users.id INNER JOIN clients ON bookings.client_id = clients.id';
 
 if (!isset($_POST['date']) && !isset($_POST['title'])) {
     $bookings = $conn->query($initial_query);

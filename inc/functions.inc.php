@@ -63,7 +63,8 @@ function sqldate($epoch) {
 function list_bookings($bookings) {
     while ($booking = $bookings->fetch_assoc()) {
         echo '<strong>'.$booking['client_fname'].' '.$booking['client_lname'].'</strong><br>';
-        echo '<small>'.$booking['title'].'</small>';
+        echo '<small><b>Title:</b> '.$booking['title'].'</small><br>';
+        if ($booking['notes'] !== "") { echo '<small><b>Notes:</b> '.$booking['notes'].'</small>'; }
         echo '<hr>';
     }
 }
