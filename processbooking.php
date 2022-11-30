@@ -1,5 +1,6 @@
-<a href="./enterbooking.php">Back</a><hr>
 <?php
+require_once('./inc/verifylogin.inc.php');
+echo '<a href="./enterbooking.php">Back</a><hr>';
 // Enable error reporting
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -59,12 +60,12 @@ function enter_booking(array $booking, $conn) {
 // Put booking info into an array to make it easier to understand
 $booking = array(
     "title" => $_POST['title'],
-    "created_by" => 1,
+    "created_by" => $id,
     "room_id" => intval($_POST['room']),
     "client_id" => intval($_POST['client']),
     "start_dt" => strtotime($_POST['start_dt']),
     "end_dt" => strtotime($_POST['end_dt']),
-    "notes" => $_POST['notes']
+    "notes" => nl2br($_POST['notes'], false)
 );
 
 validate_booking($booking);

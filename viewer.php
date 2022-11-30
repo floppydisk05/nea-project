@@ -1,22 +1,23 @@
-<a href="/">Back</a>
-<hr>
-<form action="viewer.php" method="post" style="border: 2px; width: 400px">
-    <fieldset>
-        <legend>Search</legend>
-        <label for="title"><strong>Title:</strong></label>&nbsp;
-        <input type="text" id="title" name="title"><br>
-        <label for="date"><strong>Date:</strong></label>&nbsp;
-        <input type="date" id="date" name="date"><br>
-        <input type="submit" value="Search">
-    </fieldset>
-</form>
-<?php
+<?php require_once('./inc/verifylogin.inc.php');
+echo '<a href="/">Back</a>';
+echo '<hr>';
+echo '<form action="viewer.php" method="post" style="border: 2px; width: 400px">';
+echo '    <fieldset>';
+echo '        <legend>Search</legend>';
+echo '        <label for="title"><strong>Title:</strong></label>&nbsp;';
+echo '        <input type="text" id="title" name="title"><br>';
+echo '        <label for="date"><strong>Date:</strong></label>&nbsp;';
+echo '        <input type="date" id="date" name="date"><br>';
+echo '        <input type="submit" value="Search">';
+echo '    </fieldset>';
+echo '</form>';
+
 // Enable error reporting
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-require_once('inc/functions.inc.php');
+require_once('./inc/functions.inc.php');
 
 // Create and check connection
 require_once('./inc/config.inc.php');
@@ -26,7 +27,7 @@ if ($conn->connect_error) {
    die($diemsg);
 }
 
-$initial_query = 'SELECT bookings.ref, bookings.title, bookings.`start`, bookings.`end`, bookings.notes, rooms.alias, clients.first_name AS client_fname, clients.last_name AS client_lname, users.first_name AS user_fname, users.last_name AS user_lname FROM bookings INNER JOIN rooms ON bookings.room_id = rooms.id INNER JOIN users ON bookings.created_by = users.id INNER JOIN clients ON bookings.client_id = clients.id';
+$initial_query = 'SELECT bookings.ref, bookings.title, bookings.start, bookings.end, bookings.notes, rooms.alias AS room, clients.first_name AS client_fname, clients.last_name AS client_lname, users.first_name AS user_fname, users.last_name AS user_lname FROM bookings INNER JOIN rooms ON bookings.room_id = rooms.id INNER JOIN users ON bookings.created_by = users.id INNER JOIN clients ON bookings.client_id = clients.id ORDER BY start';
 
 if (!isset($_POST['date']) && !isset($_POST['title'])) {
     $bookings = $conn->query($initial_query);

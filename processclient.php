@@ -1,5 +1,6 @@
-<a href="./addclient.php">Back</a><hr>
 <?php
+require_once('./inc/verifylogin.inc.php');
+echo '<a href="./addclient.php">Back</a><hr>';
 // Enable error reporting
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');

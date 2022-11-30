@@ -62,9 +62,12 @@ function sqldate($epoch) {
 
 function list_bookings($bookings) {
     while ($booking = $bookings->fetch_assoc()) {
-        echo '<strong>'.$booking['client_fname'].' '.$booking['client_lname'].'</strong><br>';
+        echo '<strong>'.$booking['ref'].': '.$booking['client_fname'].' '.$booking['client_lname'].'</strong><br>';
         echo '<small><b>Title:</b> '.$booking['title'].'</small><br>';
-        if ($booking['notes'] !== "") { echo '<small><b>Notes:</b> '.$booking['notes'].'</small>'; }
+        if ($booking['notes'] !== "") { echo '<small><b>Notes:</b> '.$booking['notes'].'</small><br>'; }
+        echo '<small><b>Created by:</b> '.$booking['user_fname'].' '.$booking['user_lname'].'</small><br>';
+        echo '<small><b>Start - end:</b> '.$booking['start'].' - '.$booking['end'].'</small><br>';
+        echo '<small><b>Room:</b> '.$booking['room'].'</small>';
         echo '<hr>';
     }
 }
@@ -84,4 +87,21 @@ function validate_login($username, $password) {
     $user = $users->fetch_assoc();
 
     return password_verify($password, $user['password']);
+}
+
+function get_user_id($username) {
+    // Create connection
+    $conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
+    // Check connection
+    if ($conn->connect_error) {
+       die('Connection failed: ' . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare('SELECT id FROM users WHERE username = ?');
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $users = $stmt->get_result();
+    $user = $users->fetch_assoc();
+
+    return $user['id'];
 }
