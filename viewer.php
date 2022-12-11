@@ -1,16 +1,17 @@
 <?php require_once('./inc/verifylogin.inc.php');
 echo '<a href="/">Back</a>';
-echo '<hr>';
-echo '<form action="viewer.php" method="post" style="border: 2px; width: 400px">';
-echo '    <fieldset>';
-echo '        <legend>Search</legend>';
-echo '        <label for="title"><strong>Title:</strong></label>&nbsp;';
-echo '        <input type="text" id="title" name="title"><br>';
-echo '        <label for="date"><strong>Date:</strong></label>&nbsp;';
-echo '        <input type="date" id="date" name="date"><br>';
-echo '        <input type="submit" value="Search">';
-echo '    </fieldset>';
-echo '</form>';
+//echo '<hr>';
+// Search TBD
+//echo '<form action="viewer.php" method="post" style="border: 2px; width: 400px">';
+//echo '    <fieldset>';
+//echo '        <legend>Search</legend>';
+//echo '        <label for="title"><strong>Title:</strong></label>&nbsp;';
+//echo '        <input type="text" id="title" name="title"><br>';
+//echo '        <label for="date"><strong>Date:</strong></label>&nbsp;';
+//echo '        <input type="date" id="date" name="date"><br>';
+//echo '        <input type="submit" value="Search">';
+//echo '    </fieldset>';
+//echo '</form>';
 
 // Enable error reporting
 ini_set('display_errors', '1');
