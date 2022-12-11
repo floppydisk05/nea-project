@@ -3,5 +3,6 @@ const CONF = array(
     "dbhost" => "localhost",
     "dbname" => "dbname",
     "username" => "uname",
-    "password" => "pword"
+    "password" => "pword",
+    "secret" => "secret"
 );

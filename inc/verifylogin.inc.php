@@ -4,12 +4,11 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 require_once('./inc/config.inc.php');
-$secret = "cupcakes";
 
 unset($username);
 if (isset($_COOKIE['login'])) {
     list($c_username, $cookie_hash, $id) = explode(',', $_COOKIE['login']);
-    if (md5($c_username.$secret) === $cookie_hash) {
+    if (md5($c_username.CONF["secret"]) === $cookie_hash) {
         $username = $c_username;
     } else {
         print "You have sent a bad cookie.";
