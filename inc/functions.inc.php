@@ -61,13 +61,18 @@ function sqldate($epoch) {
 }
 
 function list_bookings($bookings) {
+    if ($bookings->num_rows < 1) {
+        echo 'No bookings found.';
+        return;
+    }
     while ($booking = $bookings->fetch_assoc()) {
         echo '<strong>'.$booking['ref'].': '.$booking['client_fname'].' '.$booking['client_lname'].'</strong><br>';
         echo '<small><b>Title:</b> '.$booking['title'].'</small><br>';
         if ($booking['notes'] !== "") { echo '<small><b>Notes:</b> '.$booking['notes'].'</small><br>'; }
         echo '<small><b>Created by:</b> '.$booking['user_fname'].' '.$booking['user_lname'].'</small><br>';
         echo '<small><b>Start - end:</b> '.$booking['start'].' - '.$booking['end'].'</small><br>';
-        echo '<small><b>Room:</b> '.$booking['room'].'</small>';
+        echo '<small><b>Room:</b> '.$booking['room'].'</small><br>';
+        echo '<a href="/deletebooking.php?ref='.$booking['ref'].'" onclick="return confirm(\'Are you sure you want to delete this booking?\')"><button>Delete booking</button></a>';
         echo '<hr>';
     }
 }
@@ -104,4 +109,20 @@ function get_user_id($username) {
     $user = $users->fetch_assoc();
 
     return $user['id'];
+}
+
+function delete_booking($id) {
+    // Create connection
+    $conn = new mysqli(CONF["dbhost"], CONF["username"], CONF["password"], CONF["dbname"]);
+    // Check connection
+    if ($conn->connect_error) {
+       die('Connection failed: ' . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare('DELETE FROM bookings WHERE ref = ?');
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+
+    header("Location: /viewer.php");
+    die();
 }
