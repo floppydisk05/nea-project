@@ -13,5 +13,5 @@ if (validate_login($_POST['uname'], $_POST['pword'])) {
     header("Location: /");
     die();
 } else {
-    echo 'Incorrect username or password!<br><a href="/login.php">Back to login</a>';
+    echo 'Incorrect username or password!<br><a href="/login.html">Back to login</a>';
 }
