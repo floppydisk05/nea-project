@@ -17,5 +17,5 @@ if (isset($_COOKIE['login'])) {
 if (isset($username)) {
 	echo 'Logged in as <b>'.$username.'</b>, <a href="/logout.php">click here</a> to log out<hr>';
 } else {
-	die('Not logged in, <a href="/login.html">click here</a> to log in<hr>');
+	die('Not logged in, <a href="/login.php">click here</a> to log in<hr>');
 }

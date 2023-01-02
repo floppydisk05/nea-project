@@ -1,3 +1,4 @@
+<?php if(is_null($_POST['uname'] && is_null($_POST['pword']))) ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
