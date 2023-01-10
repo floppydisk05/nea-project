@@ -71,3 +71,4 @@ $booking = array(
 validate_booking($booking);
 display_booking($booking);
 enter_booking($booking, $conn);
+$conn->close();

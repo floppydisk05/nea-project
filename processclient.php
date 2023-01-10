@@ -53,3 +53,4 @@ $client = array(
 validate_client($client);
 display_client($client);
 enter_booking($client, $conn);
+$conn->close();

@@ -15,6 +15,8 @@ function get_user($userID) {
 	$result = $stmt->get_result();
 	if ($result->num_rows < 1) { throw new NoResultsException('No results for user id '.$userID.'!'); }
 	$user = $result->fetch_all(MYSQLI_ASSOC)[0];
+	$conn->close();
+
 	return array (
 		"first_name" => $user['first_name'],
 		"last_name" => $user['last_name']
@@ -35,6 +37,8 @@ function get_room($roomID) {
 	$result = $stmt->get_result();
 	if ($result->num_rows < 1) { throw new NoResultsException('No results for room id '.$roomID.'!'); }
 	$user = $result->fetch_all(MYSQLI_ASSOC)[0];
+	$conn->close();
+
 	return array (
 		"alias" => $user['alias']
 	);
@@ -90,6 +94,7 @@ function validate_login($username, $password) {
 	$stmt->execute();
 	$users = $stmt->get_result();
 	$user = $users->fetch_assoc();
+	$conn->close();
 
 	return password_verify($password, $user['password']);
 }
@@ -107,6 +112,7 @@ function get_user_id($username) {
 	$stmt->execute();
 	$users = $stmt->get_result();
 	$user = $users->fetch_assoc();
+	$conn->close();
 
 	return $user['id'];
 }
@@ -122,6 +128,7 @@ function delete_booking($id) {
 	$stmt = $conn->prepare('DELETE FROM bookings WHERE ref = ?');
 	$stmt->bind_param('i', $id);
 	$stmt->execute();
+	$conn->close();
 
 	header("Location: /viewer.php");
 	die();

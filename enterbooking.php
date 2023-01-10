@@ -47,6 +47,7 @@ $clients = $conn->query('SELECT id, first_name, last_name FROM clients');
 while ($client = $clients->fetch_assoc()) {
 	echo '				<option value="'.$client['id'].'">'.$client['first_name'].' '.$client['last_name'].'</option>'.PHP_EOL;
 }
+$conn->close();
 ?>
 			</select><br>
 			<label for="start_dt"><strong>Start:</strong></label><br>
