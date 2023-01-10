@@ -13,13 +13,13 @@
 		<fieldset>
 			<legend>Add Client</legend>
 			<label for="fname"><strong>First Name:</strong></label><br>
-			<input type="text" id="fname" name="fname"><br>
+			<input type="text" id="fname" name="fname" placeholder="Joe"><br>
 			<label for="lname"><strong>Last Name:</strong></label><br>
-			<input type="text" id="lname" name="lname"><br>
+			<input type="text" id="lname" name="lname" placeholder="Smith"><br>
 			<label for="email"><strong>Email:</strong></label><br>
-			<input type="email" id="email" name="email"><br>
+			<input type="email" id="email" name="email" placeholder="me@example.com"><br>
 			<label for="phone"><strong>Phone (In the format xxxxx xxxxxx):</strong></label><br>
-			<input type="tel" id="phone" name="phone" pattern="[0-9]{5} [0-9]{6}"><br>
+			<input type="tel" id="phone" name="phone" pattern="[0-9]{5} [0-9]{6}" placeholder="01234 567890"><br>
 			<input type="submit" value="Save">
 		</fieldset>
 	</form>
